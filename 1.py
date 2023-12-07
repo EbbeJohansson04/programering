@@ -4,8 +4,26 @@ def max(c, d):
     else:
         return d
 
+def max(c, d):
+    if c > d:
+        print(c)
+    else:
+        print(c)
+
 print(max(3, 2))
 print(max(11, 3))
+
+
+
+
+
+
+
+
+
+
+
+
 
 def add( a, b):
     return a + b
@@ -13,6 +31,6 @@ def add( a, b):
 print(add(3, 5))
 
 def hej(name):
-    return name
+    return (hej name)
 
-print(hej("hej ada ada ada"))
+print(hej("ada"))
