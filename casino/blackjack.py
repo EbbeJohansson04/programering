@@ -1,5 +1,16 @@
 import random
 
+dice = [1, 2, 3, 4, 5, 6]
+
+def play():
+    global dice 
+    x = random.choice(dice)
+    return x
+
+print(play())
+
+import random
+
 deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
 hand = 0
