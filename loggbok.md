@@ -6,7 +6,7 @@
  Idag har jag fixat med det nya operativsystemet och har instalerat VScodium och godot. Utöver detta har jag fixat så jag har en fungerande loggbok och har läst/lärt mig om hur man använder godot engine.
 
 
- ### Vecka 47 - 49
+ ### Vecka 47 - 48
  Jag har fortsatt att lära mig om goDot och goDot script enligt https://www.youtube.com/watch?v=UcdwP1Q2UlU&list=LL&index=30 och https://www.youtube.com/watch?v=S8lMTwSRoRg&t=2047s. 
 
  Min kod:
@@ -79,4 +79,41 @@ print
 
 print(play())
 
+
+
+### Vecka 49
+Jag fortsätter med min paus fårn godot med målet om att kunna lämna in ett simplare projekt. denna veckan har jag gjort om min blackjack kod samt skapate ett flödesschema. Bild på flödesschemat saknas då det gjordes på papper men har ingen kamera att ta bild med.
         
+Blackjack kod (som ändrats):
+deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]*4
+
+hand = 0
+
+dealer = 0
+
+choice = input("hit or stand: ")
+
+def play(hand, deck):
+    while 
+        
+        if choice == "hit": 
+            hand = random.choice(deck)
+        else:
+            hand = "u lose"
+        return hand
+        
+
+print(play(hand, deck))
+
+Utöver detta har jag även gjort ett simpelt troll virus program i samarbete med nätverkssäkerhets kursen.
+
+# Virus kod:
+
+import webbrowser, random, time
+
+sites =["https://www.youtube.com/watch?v=XHBukBv6Dxc"]
+
+while True:
+    tabs = random.choice(sites)
+    webbrowser.open(tabs, new=10)
+    time.sleep(0.5)
