@@ -94,8 +94,7 @@ dealer = 0
 choice = input("hit or stand: ")
 
 def play(hand, deck):
-    while 
-        
+    while hand => 21:        
         if choice == "hit": 
             hand = random.choice(deck)
         else:
