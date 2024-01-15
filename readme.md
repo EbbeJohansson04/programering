@@ -1,4 +1,83 @@
  # Loggbok
+
+ ### Vecka 49 - 3
+ På grund av komplikationer, prov/läxor och det faktum att det var lov så har jag glömt att skriva i loggboken. Under denna tid har jag lagt till ett poäng system som inte är riktigt klart än, jag har skrivit kod som representerar början i vanliga blackjackspel och jag lade till hur dealern fick kort på ett bättre sätt.
+
+ För att göra detta möjligt har jag behövt leta reda på några blackjack regler som verkar rimliga.
+
+ Dom största problemen jag stött på var att omvandla reglerna till kod. Då det fortfarande är en simpel kod så har det inte varit några större problem än med skrivandet av hur reglerna ska agera när man pelar.
+
+ ## Min kod:
+import random
+import time
+
+points = 100
+
+J = 10
+
+Q = 10
+
+K = 10
+
+#deck = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, 11]*4
+
+
+
+deck = [5, 6, K]
+
+hand = 0
+
+game = 0
+
+dealer = 0
+
+bet = input("What is your bet?: ")
+
+choice = input("play or not?: ")
+
+keep_going = 0
+
+if choice == "p":
+        hand += random.choice(deck)
+        print("Your hand: ", hand)
+        time.sleep(1.5)
+        dealer += random.choice(deck)
+        print("Dealers hand: ", dealer)
+        time.sleep(1.5)
+        hand += random.choice(deck)
+        print("Your hand: ", hand)
+        print("Dealers hand: ", dealer)
+        if hand == 21:
+            print("You got a BlackJack")
+            points += bet * 2.5
+            game = "ended you won"
+        else:
+            keep_going = input("hit or stand: ")
+            while keep_going == "hit" and game != "ended":
+                hand += random.choice(deck)
+                if hand < 21:
+                    print("Your hand: ", hand)
+                    keep_going = input("hit or stand: ")
+                else: break
+            while dealer <= 17:
+                dealer += random.choice(deck)
+else:
+    print("Try Again and Learn To Spell You Damn Monkey")
+
+
+if hand > 21:
+    points -= bet
+    print("You Got Fat and lose with a hand of", hand)
+    print("Your lose your bet.")
+    print("Your currently have: ", points, " points")
+if dealer < hand and hand <= 21:
+    print("You win!!!!: ", bet * 2, " pointsn")
+    print("Your currently have: ", points, " points")  
+
+
+if hand == dealer and choice == "p":
+    print("A Nice Tie :) Insert amount of points  returned here same as inserted")
+
  #### Vecka 34 - 44 
  Ingen loggbok pga komplikationer och byte av opperativsystem som tagit pårt tidigare loggböcker.
 
@@ -54,7 +133,7 @@ func update_animations(input_axis):
 		animated_sprite_2d.play("jump")
 
 
-Utöver detta har jag blrjad "värma upp" inför ett mindre project där jag ska göra ett digitalt casino där man kan spela olika klassiska casino spel.
+Utöver detta har jag börjat "värma upp" inför ett mindre project där jag ska göra ett digitalt casino där man kan spela olika klassiska casino spel.
 
 Min kod än så länge:
 import random
