@@ -1,6 +1,37 @@
  # Loggbok
 
 ### Vecka 8
+
+## Tisdag
+Idag har jag fortsatt med att fixa upp Rikards kod så den är mer tydlig för spelaren (som ett spel borde vara) Utöver detta har jag även fortsatt med att göra min egen kod objectorienterad.
+
+Exempelkod:
+
+                print("Dealers hand: ", self.computer_hand)
+                print(self.player_N," hand: ", self.player_hand)
+
+                k_g = input("Hit or Stand: ").lower
+                while k_g == "hit":
+                    self.player_hand.add(self.deck.draw_card())
+                    print("Yyour Hand: ",self.player_hand)
+                    k_g = input("Hit or Stand: ").lower  
+
+                while self.computer_hand.sum() < 18:
+                    self.computer_hand.add(self.deck.draw_card())
+                    print("Dealers Hand: ", self.computer_hand)
+                    time.sleep(1)
+
+                #who wins?
+
+                if self.player_hand.sum() > self.computer_hand.sum() and player_hand.sum() <= 21:
+                    print(self.player_N, " Wins!")
+                elif self.player_hand.sum() == self.computer_hand.sum():
+                    print("It Is A Nice Tie!")
+                elif self.player_hand.sum() < self.computer_hand.sum() and self.computer_hand() <= 21:
+                    print("You Lose, Better Luck Next Time!")
+                else:
+                    print("What Happened?")
+
 ## Måndag
 Denna dag har jag försökt fixa upp koden för delen som är ansvarig för själva spelet samt gör om min kod till att bli mer baserad på klasser liksom Rikards kod.
 
