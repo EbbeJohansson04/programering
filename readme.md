@@ -1,5 +1,43 @@
  # Loggbok
 
+### Vecka 8
+## Måndag
+Denna dag har jag försökt fixa upp koden för delen som är ansvarig för själva spelet samt gör om min kod till att bli mer baserad på klasser liksom Rikards kod.
+
+Exempel på kod:
+class BlackJack_game():
+    def _init_(self):
+        self.deck = Deck()
+        self.player_hand = Hand("Player")
+        self.computer_hand = Hand("Computer")
+
+        def play(self):
+            choice = input("Play? yes or no: ")
+            while choice == "yes":
+                self.layer_hand.clear()
+                self.computer_hand.clear()
+
+                self.player_hand.add(self.deck.draw_card())
+                self.player_hand.add(self.deck.draw_card())
+
+                self.computer_hand.add(self.deck.draw_card())
+
+                print("Dealers hand: ", self.computer_hand)
+                print(self.player_N," hand: ", self.player_hand)
+
+
+ ### Vecka 6
+ ## Måndag
+ Har övat på cratch samt har planerat/gjort ett uppläg inför lektionen jag ska hålla på Hallerna skolan. 
+ 
+ ## Torsdag
+ Jag har fått hjälp av Joel som har gått igenom hur jag bättre kan använda mig av object inför mitt object orienterade projekt. Kod förekommer vid senare datum
+ 
+  
+
+ ### Vecka 3 - 5
+ PGA mitt dåliga minne har jag glömt att skriva i loggboken men jag har övat på scratch inför utlärning på Hallerna skolan vecka 6. Jag har gjort lite olika spel av en enklare varriant samt kollat och lekt med lite svprare spel. Kod kan hända att förekomma vid senare datum.
+
  ### Vecka 49 - 3
  På grund av komplikationer, prov/läxor och det faktum att det var lov så har jag glömt att skriva i loggboken. Under denna tid har jag lagt till ett poäng system som inte är riktigt klart än, jag har skrivit kod som representerar början i vanliga blackjackspel och jag lade till hur dealern fick kort på ett bättre sätt.
 
