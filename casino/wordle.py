@@ -37,7 +37,20 @@ class Word():
         return self.word
         
 
-motd = Word()
+wotd = Word()
+
+
+class Display():
+
+    def __init__(self):
+        self.dis = []
+        for i in self.word:
+            self.dis.append("_")
+            return self.dis
+
+
+
+        
 
 
 print("What is the Word of The Day?")
@@ -45,45 +58,18 @@ print("What is the Word of The Day?")
 print("Guess One Letter At A Time Untill You Figure It out")
 
 
-length = len(motd.word)
+length = len(wotd.word)
 
 
 print(length)
 
 
-if length == 10:
-    print("_ _ _ _ _ _ _ _ _ _")
-elif length == 9:
-    print("_ _ _ _ _ _ _ _ _")
-elif length == 8:
-    print("_ _ _ _ _ _ _ _")
-elif length == 7:
-    print("_ _ _ _ _ _ _")
-elif length == 6:
-    print("_ _ _ _ _ _")
-elif length == 5:
-    print("_ _ _ _ _")
-elif length == 4:
-    print("_ _ _ _")
-elif length == 3:
-    print("_ _ _")
-elif length == 2:
-    print("_ _")
-    
 
 
-guess = input("Guess One Letter: ")
+x = ["h", "u", "s", "b", "i", "l"]
 
+y = ["_","_","_","_","_" ]
 
-
-
-for i in motd.word:
-    if 
-
-x = "KAKA"
-
-print(x[0] )
-
-
-
-print(motd.word)
+for letter, val in enumerate(x):
+    if val == "s":
+        print((letter ))

@@ -1,5 +1,57 @@
  # Loggbok
 
+### Vecka 10
+## måndag - Tisdag
+Jag kommer inte på vad mer jag ska göra med BlackJack koden då jag är typ klar samt vill fortsätta med mitt "kasino". Jag har nu börjad med ett wordle spel där man gissar på dagens ord. Det som har varit svårast än så länge var att komma på och implementera kod som visar de bokstäver man gissatt rätt på medan resterande bokstäver visas som ____. Glömde spara så all kod är inte kvar
+
+kod: 
+class Word():
+
+    def __init__(self):
+        self.kaka = ["kaka", "kossa", "skola", "stekpanna", "bil", "träd"]
+        self.word = random.choice(self.kaka)
+
+
+    def __str__(self):
+        return self.word
+        
+
+wotd = Word()
+
+
+class Display():
+
+    def __init__(self):
+        self.dis = []
+        for i in self.word:
+            self.dis.append("_")
+            return self.dis
+
+
+        
+
+
+print("What is the Word of The Day?")
+
+print("Guess One Letter At A Time Untill You Figure It out")
+
+
+length = len(wotd.word)
+
+
+print(length)
+
+
+
+
+x = ["h", "u", "s", "b", "i", "l"]
+
+y = ["_","_","_","_","_" ]
+
+for letter, val in enumerate(x):
+    if val == "s":
+        print((letter ))
+
 ### Vecka 8
 
 ## Tisdag
