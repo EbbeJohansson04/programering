@@ -55,7 +55,7 @@ class Display():
 
 print("What is the Word of The Day?")
 
-print("Guess One Letter At A Time Untill You Figure It out")
+print("Guess One Letter At A Time Until You Figure It out")
 
 
 length = len(wotd.word)
