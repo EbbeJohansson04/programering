@@ -2,83 +2,117 @@
 
 ### Vecka 15
 
+## Trosdag
+
+Idag har det gått segt då jag har hållit på att göra ett bättre flödeschema för yatzy programmet då jag fastnad med vad jag skulle göra. Utöver detta har jag börjat göra om koden så den funkar för fler spelare men fram mot slutet på lektionen kom jag på att det nog skulle vara bättre att göra så koden fungerar för en spelare först. Det svåra med idag var att komma igång samt försöka klura hur jag ska skriva koden. Se bilderna flödesschema 1 & 2.
+
+Koden:
+
+    class Player():
+        def __init_(self):
+            self.names = []
+            answer = int(input("Hur många spelare: "))
+            for i in answer:
+                self.names = input("Your Name? ")
+            return names
+
+    class Play():
+        def __init_(self):
+            self.dice = Dice("dice")
+            self.players = Player("names")
+            self.point_list = List("lista")
+
+        def play(self):
+            for i in self.players:
+                turn = 0
+                choice = input("Play ? yeas or No: ").lower
+                while choice == "yes" and turn <= 3:
+                    for i in 5:
+                        roll = []
+                        roll.append.random(self.dice)
+                        print(roll)
+
 ## Onsdag
 
 Idag har jaggjort lite programering i samband med en uppgift i nätverkssäkerheten. Jag skapade en crypteringskod som låter användaren cryptera eller decryptera medelanden med hjälp av ett så kallar cesar cipher. Det svåraste med denna kod var att koma på medelandet skulle crypteras beroende på den nyckeln man vill använda samt bestämma hur looparna skulle cryptera enligt cipherets regler. (se filen med virus och crypto)
 
 Koden:
-def Encrypt(message, key):
-if key == 0:
-new = alphabet
-elif key > 0:
-one = alphabet[:key]
-two = alphabet[key:]
-new = two + one
 
-    encrypted = ""
+    def Encrypt(message, key):
+        if key == 0:
+            new = alphabet
+        elif key > 0:
+            one = alphabet[:key]
+            two = alphabet[key:]
+            new = two + one
 
-    for char in message:
-        if char == '':
-            encrypted += " "
-        else :
-            for i in range(len(new)):
-                if char == alphabet[i]:
-                    encrypted += new[i]
-                    break
+        encrypted = ""
+
+        for char in message:
+            if char == '':
+                encrypted += " "
+            else :
+                for i in range(len(new)):
+                    if char == alphabet[i]:
+                        encrypted += new[i]
+                        break
+                else:
+                    encrypted += char
+
+        return encrypted
+
+    def Decrypt(encrypted_message, key):
+        decrypted = ""
+        for char in encrypted_message:
+            if char == ' ':
+                decrypted += " "
             else:
-                encrypted += char
+                index = alphabet.find(char)
+                decrypted_char_index = (index - key) % len(alphabet)
+                decrypted += alphabet[decrypted_char_index]
+        return decrypted
 
-    return encrypted
 
-def Decrypt(encrypted_message, key):
-decrypted = ""
-for char in encrypted_message:
-if char == ' ':
-decrypted += " "
-else:
-index = alphabet.find(char)
-decrypted_char_index = (index - key) % len(alphabet)
-decrypted += alphabet[decrypted_char_index]
-return decrypted
 
-def kola(medelande, nyckel):
-kola = ""
-for char in medelande:
-if char == ' ':
-kola += " "
-else:
-index = alphabet.find(char)
-kola_char_index = (index - nyckel) % len(alphabet)
-kola += alphabet[kola_char_index]
-return kola
+    def kola(medelande, nyckel):
+        kola = ""
+        for char in medelande:
+            if char == ' ':
+                kola += " "
+            else:
+                index = alphabet.find(char)
+                kola_char_index = (index - nyckel) % len(alphabet)
+                kola += alphabet[kola_char_index]
+        return kola
 
-alphabet = "abcdefghijklmnopqrstuvwxyz"
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-answer = input("Encrypt or Decrypt: ").lower()
+    answer = input("Encrypt or Decrypt: ").lower()
 
-x = ""
+    x = ""
 
-if answer == "encrypt":
-message = input("message pls: ").lower()
-key = int(input("shift nr? "))
-x = "yes"
-elif answer == "decrypt":
-medelande = input("message pls: ").lower()
-nyckel = int(input("shift nr? "))
-x = "no"
-else:
-print("U Smort")
+    if answer == "encrypt":
+        message = input("message pls: ").lower()
+        key = int(input("shift nr? "))
+        x = "yes"
+    elif answer == "decrypt":
+        medelande = input("message pls: ").lower()
+        nyckel = int(input("shift nr? "))
+        x = "no"
+    else:
+        print("U Smort")
 
-if x == "yes":
-encrypted_message = Encrypt(message, key)
-print("Encrypted: ", encrypted_message)
 
-    dencrypted_message = Decrypt(encrypted_message, key)
-    print("Decrypted: ", dencrypted_message)
+    if x == "yes":
+        encrypted_message = Encrypt(message, key)
+        print("Encrypted: ", encrypted_message)
 
-elif x == "no":
-fan = kola(medelande, nyckel)
-print("Decrypted: ", fan)
+        dencrypted_message = Decrypt(encrypted_message, key)
+        print("Decrypted: ", dencrypted_message)
+
+    elif x == "no":
+        fan = kola(medelande, nyckel)
+        print("Decrypted: ", fan)
 
 ## Måndag
 

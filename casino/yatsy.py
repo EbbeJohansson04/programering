@@ -36,7 +36,7 @@
 import random
 
 class Dice():
-    def _init_(self):
+    def __init_(self):
         self.dice = [1, 2, 3, 4, 5, 6]
 
 
@@ -46,41 +46,53 @@ class Dice():
 
 
 class Player():
-    def _init_(self):
-        self.names = input("Your Name? ")
+    def __init_(self):
+        self.names = []
+        answer = int(input("Hur många spelare: "))
+        for i in answer:
+            self.names = input("Your Name? ")
+        return names
         #if names == "":
         #   name = name.append(input())
 
-player = Player()
+#player = Player()
 
 
 class Lista():
-    def _init_(self):
+    def __init__(self):
         self.lista = ["1:or", "2:or", " 3:or", "4:or", "5:or", "6:or", "Par", "2par", "Triss", "Fyrtal", "kåk", "liten stege", "stor stege", "chans", "ryatzy"]
         
         return lista
 
 
 class Play():
-    def _init_(self):
+    def __init_(self):
         self.dice = Dice("dice")
         self.players = Player("names")
         self.point_list = List("lista")
 
     def play(self):
-        turn = 0
-        choice = input("Play ? yeas or No: ").lower
-        while choice == "yes" and turn <= 3:
-            for i in 5:
-                roll = []
-                roll.append.random(self.dice)
-            x = 1
-            antal = [-1]
-            for i in 5:
-                
-                antal.append = roll.count(x)
-                x =+1
-            if antal[1] == 3:
+        for i in self.players:
+            turn = 0
+            choice = input("Play ? yeas or No: ").lower
+            while choice == "yes" and turn <= 3:
+                for i in 5:
+                    roll = []
+                    roll.append.random(self.dice)
+                    print(roll)
+                x = 1
+
+                keep = input("Vill du spara något: ").lower()
+                if keep == "yes":
+                    answer = int(input("Vad will du spara (ett nummer): "))
+
+                antal = [-1]
+                for i in 5:
+
+                    antal.append = roll.count(x)
+                    x =+1
+                if antal[1] == 3:
+                    break
                 
 
 
@@ -135,7 +147,7 @@ print("hello")
 
 
 #class Hand():
-#    def __init__(self, names):
+#    def ___init__(self, names):
 #        self.dice = []
 #        self.name = names
 #    
@@ -145,7 +157,7 @@ print("hello")
 
 #
 #class Turn():
-#    def __init__(self, turn):
+#    def ___init__(self, turn):
 #        self.turn = []
 #
 #        while turn <= 3:
