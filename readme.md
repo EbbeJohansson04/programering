@@ -1,5 +1,150 @@
 # Loggbok
 
+### Vecka 15
+
+## Onsdag
+
+Idag har jaggjort lite programering i samband med en uppgift i nätverkssäkerheten. Jag skapade en crypteringskod som låter användaren cryptera eller decryptera medelanden med hjälp av ett så kallar cesar cipher. Det svåraste med denna kod var att koma på medelandet skulle crypteras beroende på den nyckeln man vill använda samt bestämma hur looparna skulle cryptera enligt cipherets regler. (se filen med virus och crypto)
+
+Koden:
+def Encrypt(message, key):
+if key == 0:
+new = alphabet
+elif key > 0:
+one = alphabet[:key]
+two = alphabet[key:]
+new = two + one
+
+    encrypted = ""
+
+    for char in message:
+        if char == '':
+            encrypted += " "
+        else :
+            for i in range(len(new)):
+                if char == alphabet[i]:
+                    encrypted += new[i]
+                    break
+            else:
+                encrypted += char
+
+    return encrypted
+
+def Decrypt(encrypted_message, key):
+decrypted = ""
+for char in encrypted_message:
+if char == ' ':
+decrypted += " "
+else:
+index = alphabet.find(char)
+decrypted_char_index = (index - key) % len(alphabet)
+decrypted += alphabet[decrypted_char_index]
+return decrypted
+
+def kola(medelande, nyckel):
+kola = ""
+for char in medelande:
+if char == ' ':
+kola += " "
+else:
+index = alphabet.find(char)
+kola_char_index = (index - nyckel) % len(alphabet)
+kola += alphabet[kola_char_index]
+return kola
+
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+answer = input("Encrypt or Decrypt: ").lower()
+
+x = ""
+
+if answer == "encrypt":
+message = input("message pls: ").lower()
+key = int(input("shift nr? "))
+x = "yes"
+elif answer == "decrypt":
+medelande = input("message pls: ").lower()
+nyckel = int(input("shift nr? "))
+x = "no"
+else:
+print("U Smort")
+
+if x == "yes":
+encrypted_message = Encrypt(message, key)
+print("Encrypted: ", encrypted_message)
+
+    dencrypted_message = Decrypt(encrypted_message, key)
+    print("Decrypted: ", dencrypted_message)
+
+elif x == "no":
+fan = kola(medelande, nyckel)
+print("Decrypted: ", fan)
+
+## Måndag
+
+idag har jag fortsatt med mitt yatzy spel och har försökt skapa den del av koden som ansvarar för själva spelandet men det gick inte så jätte bra. Mängden av tiden spenderade jag med att försöka komma på hur jag ska göra det möjligt att ta reda på mängden av de olika siffrorna som täningarna visar samt hur jag sedan skulle göra förr att mängden och kombinationen av olika siffror ska representera olika mål i listan som därefter ska tas bort.
+
+Koden:
+
+class Play():
+def _init_(self):
+self.dice = Dice("dice")
+self.players = Player("names")
+self.point_list = List("lista")
+
+    def play(self):
+        turn = 0
+        choice = input("Play ? yeas or No: ").lower
+        while choice == "yes" and turn <= 3:
+            for i in 5:
+                roll = []
+                roll.append.random(self.dice)
+            x = 1
+            antal = [-1]
+            for i in 5:
+
+                antal.append = roll.count(x)
+                x =+1
+            if antal[1] == 3:
+
+class Points():
+def **init**(self, lista):
+played = []
+played = played.append(self.lista)
+
+        if played == "1:or":
+            self.points =+ 5
+        elif played == "2:or":
+            self.points =+ 10
+        elif played == "3:or":
+            self.points =+ 15
+        elif played == "4:or":
+            self.points =+ 20
+        elif played == "5:or":
+            self.points =+ 25
+        elif played == "6:or":
+            self.points =+ 30
+        elif played == "par":
+            self.points =+ 12
+        elif played == "2par":
+            self.points =+ 22
+        elif played == "triss":
+            self.points =+ 18
+        elif played == "fyrtal":
+            self.points =+ 24
+        elif played == "kåk":
+            self.points =+ 28
+        elif played == "liten stege":
+            self.points =+ 15
+        elif played == "stor stege":
+            self.points =+ 20
+        elif played == "chans":
+            self.points =+ 10
+        elif played == "yatzy":
+            self.points =+ 50
+        else:
+            print("u got nothing")
+
 ### Vecka 13
 
 ## Måndag

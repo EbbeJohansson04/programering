@@ -37,11 +37,11 @@ import random
 
 class Dice():
     def _init_(self):
-        self.tärning = [1, 2, 3, 4, 5, 6]
+        self.dice = [1, 2, 3, 4, 5, 6]
 
 
     def __str__(self):
-        return self.tärning
+        return self.dice
 
 
 
@@ -51,18 +51,111 @@ class Player():
         #if names == "":
         #   name = name.append(input())
 
-class Point_list():
+player = Player()
+
+
+class Lista():
     def _init_(self):
-        lista = ["1:or", "2:or", " 3:or", "4:or", "5:or", "6:or", "Par", "2par", "Triss", "Fyrtal", "kåk", "liten stege", "stor stege", "chans", "ryatzy"]
+        self.lista = ["1:or", "2:or", " 3:or", "4:or", "5:or", "6:or", "Par", "2par", "Triss", "Fyrtal", "kåk", "liten stege", "stor stege", "chans", "ryatzy"]
+        
+        return lista
+
 
 class Play():
     def _init_(self):
-        self.dice = Dice()
-        self.players = Players()
-        self.point_list = Point_list()
+        self.dice = Dice("dice")
+        self.players = Player("names")
+        self.point_list = List("lista")
 
-        def play(self):
-            turn = 0
-            choice = input("Play ? yeas or No: ").lower
-            while choice == "yes" and turn <= 3:
+    def play(self):
+        turn = 0
+        choice = input("Play ? yeas or No: ").lower
+        while choice == "yes" and turn <= 3:
+            for i in 5:
+                roll = []
+                roll.append.random(self.dice)
+            x = 1
+            antal = [-1]
+            for i in 5:
                 
+                antal.append = roll.count(x)
+                x =+1
+            if antal[1] == 3:
+                
+
+
+                    
+
+
+
+class Points():
+    def __init__(self, lista):
+        played = []
+        played = played.append(self.lista) 
+
+        if played == "1:or":
+            self.points =+ 5
+        elif played == "2:or":
+            self.points =+ 10
+        elif played == "3:or":
+            self.points =+ 15
+        elif played == "4:or":
+            self.points =+ 20
+        elif played == "5:or":
+            self.points =+ 25
+        elif played == "6:or":
+            self.points =+ 30
+        elif played == "par":
+            self.points =+ 12
+        elif played == "2par":
+            self.points =+ 22
+        elif played == "triss":
+            self.points =+ 18
+        elif played == "fyrtal":
+            self.points =+ 24
+        elif played == "kåk":
+            self.points =+ 28
+        elif played == "liten stege":
+            self.points =+ 15
+        elif played == "stor stege":
+            self.points =+ 20
+        elif played == "chans":
+            self.points =+ 10
+        elif played == "yatzy":
+            self.points =+ 50
+        else:
+            print("u got nothing")
+
+
+
+
+
+print("hello")
+
+
+
+#class Hand():
+#    def __init__(self, names):
+#        self.dice = []
+#        self.name = names
+#    
+#    def add(self, card):
+#        self.lista.append()
+#
+
+#
+#class Turn():
+#    def __init__(self, turn):
+#        self.turn = []
+#
+#        while turn <= 3:
+#            for i in 5:
+#                x = random.list
+#                turn.append(x)
+#
+#        def __str__(self):
+#            return self.turn
+#
+#fan = Turn()
+#
+#print(fan.turn)
