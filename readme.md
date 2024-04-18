@@ -1,5 +1,11 @@
 # Loggbok
 
+### Vecka 16
+
+## Måndag
+
+Har haft problem med package.json och har därför inte kunnat skriva så mycket kod eftersom jag inte har kunnat köra den. Spenderade majoriteten av lektionen med att försöka fixa prorblemet men tror jag får löst det tills nästa lektion.
+
 ### Vecka 15
 
 ## Trosdag
