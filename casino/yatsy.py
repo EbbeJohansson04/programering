@@ -36,25 +36,18 @@ import random
 
 
 import random
-
 class Dice():
     def __init__(self):
-        self.roll = []
+        self.kola = []
+        for i in range (5):
+            self.kola.append(random.randint(1, 6))
 
-    def roll_dice(self):
-        x = 0
-        while x > 6:
-            z
+
 class Hand():
     #players hand/erned points
-    def __init__(self, player_name):
+    def __init__(self):
         self.checkbox = []
         self.points = []
-        self.name = player_name
-
-    def add(self, checks):
-        self.checkbox.append(checks)
-        return self.checkbox
 
 
 class Lista():
@@ -64,16 +57,10 @@ class Lista():
 
 
 class Play():
-    def __init_(self):
-        self.point_list = List()
-        self.player_points = Hand("name")
-        self.player_turn = 0
 
     def Play(self):
-        play = input("Play. Yes or No ").lower()
+#        play = input("Play. Yes or No ").lower()
         if play == "yes" and self.player_turn <= 3:
-            #self.player_points.clear()
-            #self.point_list.clear()
             print(point_list)
             print(tärning.roll)
             answer = input("spara något")
@@ -89,7 +76,7 @@ print("hello")
 
 
 tärning = Dice()
-print(tärning.roll)
+print(tärning.kola)
 
 
 
