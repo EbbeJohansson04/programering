@@ -38,9 +38,9 @@ import random
 import random
 class Dice():
     def __init__(self):
-        self.kola = []
+        self.dice = []
         for i in range (5):
-            self.kola.append(random.randint(1, 6))
+            self.dice.append(random.randint(1, 6))
 
 
 class Hand():
@@ -72,11 +72,10 @@ class Play():
 
 
 
-print("hello")
 
 
 tärning = Dice()
-print(tärning.kola)
+print(tärning.dice)
 
 
 
