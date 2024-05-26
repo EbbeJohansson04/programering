@@ -3,6 +3,9 @@
 ### Vecka 21
 
 ## Lördag
+Gör nu ett snabbt och enkelt Black Jack spel (ej Object orienterat). Funkar inte riktigt än men funkar så länge man inte vill sluta få kort. OBS! Vill du se objectorienterat se filen crypto.py eller virus.py ( inget virus förrän komentarerna tas bort samt är inget virus utan gör bara att ett fönster poppar upp. Stäng av programet så slutar det.) 
+
+## Lördag
 Jag har en del panik och kommer inte hinna klart med projectet. Har därför bestämt mig för att inte göra det ombjectorienterat utan försöka hinna klart och göra projectet i "vanlig" programering.
 
 ### Vecka 16

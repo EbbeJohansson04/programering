@@ -1,4 +1,3 @@
-from cryptography.fernet import Fernet  
 
 def Encrypt(message, key):  
     if key == 0:  
