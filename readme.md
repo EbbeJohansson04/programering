@@ -1,5 +1,10 @@
 # Loggbok
 
+### Vecka 21
+
+## Lördag
+Jag har en del panik och kommer inte hinna klart med projectet. Har därför bestämt mig för att inte göra det ombjectorienterat utan försöka hinna klart och göra projectet i "vanlig" programering.
+
 ### Vecka 16
 
 ## Måndag
