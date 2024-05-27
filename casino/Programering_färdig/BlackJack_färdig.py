@@ -5,70 +5,88 @@ import random
 #fler spelare#
 
 
-#playerin = True
-#dealerin = True
+#player_in = True
+#dealer_in = True
 
 #worth = 100
 
 #beting = int(input("How much do dare to bet: "))
 
 
-class Betin():
+class Beting():
     def __init__(self) -> None:
         self.worth = 100
         self.beting = int(input("How much do dare to bet: "))
 
 class Deck():
-    def __init__(self)-> str:
-        self.deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A", "J", "Q", "K", "A",  "J", "Q", "K", "A",  "J", "Q", "K", "A", ]
-        self.playerHand = []
-        self.dealerHand = []
+    def __init__(self)-> None:
+#        self.deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+#                    2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A", "J", "Q", "K", "A",  "J", "Q", "K", "A",  "J", "Q", "K", "A", ]
+        self.deck = []
+        self.create_deck()
 
-        return self.dealerHand
+    def create_deck(self):
+        self.deck = []
+        for i in range(1, 14):
+            # spade - unicode
+            self.cards.append(Card('\u2660', i))
+            # heart - unicode
+            self.cards.append(Card('\u2665', i))
+            # diamond - unicode
+            self.cards.append(Card('\u2666', i))
+            # club - unicode
+            self.cards.append(Card('\u2663', i))
+
+
+
+
+
+class Card:
+    def __init__(self, name, value) -> None:
+        self.exist: bool = True
+        self.name: str = name
+        self.value: value = value
+    
+
 
 class Hand():
-    def __init__(self, card,) -> None:
-        self.card = card
-#        self.turn = turn
-        self.turn = []
-    
-    def dealCard(self, deck):
-        self.card = random.choice(deck)
-        self.turn.append(self.card)
-        self.deck.remove(self.card)
+    def __init__(self, card, suit, value) -> None:
+        self.card: int = card
+        self.hand: list[str] = []
+        self.turn: list[int] = []
+        self.total_value: int = 0
+        self.FACE: list[str] = ["J", "Q", "K"]
+        self.deck = Deck()
+        self.suit = suit
+        self.value = value
 
-    def __init__(self) -> None:
-        self.hand = []
+    def card(self):
+        self.card
+
+    def dealCard(self):
+        for _ in range(2):
+            self.card = random.choice(deck)
+            self.turn.append(self.card)
+        
+    def RemoveValueFromeDeck():
+        for i in range(len(self.player.turn)):
+            self.deck.deck.remove(self.player.turn[i])
         
     def giveCards(self):
-        for _ in range(2):
             self.dealCard(self.dealerHand)
-            self.dealCard(self.playerHand)
 
-
-
-class Points():
-    def __init__(self) -> None:
-        self.total = 0
-        self.face = ["J", "Q", "K"]
-    
-    def total(self, turn) -> int:
-        for self.card in turn:
-            if self.card in range(1, 11):
-                self.total += self.card
-            elif self.card in self.face:
-                self.total += 10
+    def calculate_total(self) -> None:
+        self.total_value = 0
+        for card in self.turn:
+            if card in range(1, 11):
+                self.total_value += card
+            elif card in self.face:
+                self.total_value += 10
             else:
-                if self.total > 11:
-                    self.total += 1
+                if self.total_value > 11:
+                    self.total_value += 1
                 else:
-                    self.total += 11
-        return self.total
-
-
-
-
+                    self.total_value += 11
 
 class Dealer():
     def __init__(self) -> None:
@@ -81,44 +99,41 @@ class Dealer():
             return self.dealerHand[1]
 
 
-
-class Player():
-    def __init__(self) -> None:
-        self.hand = []
-
-
 class Play():
     def __init__(self) -> None:
-        self.playerin = True
-        self.dealerin = True
+        self.player_in = True
+        self.dealer_in = True
         self.stayOrHit = 0
-        self.dealerHand = []
-        self.playerHand = []
+        self.player = Hand("Ada")
+        self.computer = Hand("Computer")
+        self.deck = Deck()
 
-
-    
     def game(self):
-        while self.playerin or self.dealerin:
-            print(F"Dealer has {self.dealerHand()} and x")
-            print(f"You have {self.playerHand}  for a total of {self.total(self.playerHand)}")
-        if self.playerin:
+        self.player.calculate_total()
+        self.player.dealCard()
+        
+
+        while self.player_in or self.dealer_in:
+            print(F"Dealer has {self.computer.hand} and x")
+            print(f"You have {self.player.hand} for a total of {self.player.total}")
+        if self.player_in:
             self.stayOrHit = input("1: Stay\n2: Hit\n")
             if self.stayOrHit.isdigit():
                 int(self.stayOrHit)
             else:
                 print("Please press ether the nr '1' button or nr '2' button and try again")
         if self.total(self.dealerHand) > 16:
-            self.dealerin = False
+            self.dealer_in = False
         else:
             self.dealCard(self.dealerHand)
         if self.stayOrHit == 1:
-            self.playerin = False
+            self.player_in = False
         else:
             self.dealerCard(self.playerHand)
         if self.total(self.dealrHand) >= 21:
-            self.dealerin = False
+            self.dealer_in = False
         if self.total(self.playerHand) >= 21:
-            self.playerin = False
+            self.player_in = False
 
     def sount(self):
         if self.total(self.plaerHand) == 21:
@@ -194,27 +209,27 @@ spela.game()
 #    dealCard(dealerHand)
 #    dealCard(playerHand)
 
-#while playerin or dealerin:
+#while player_in or dealer_in:
 #    print(F"Dealer has {revealDealerHand()} and x")
 #    print(f"You have {playerHand}  for a total of {total(playerHand)}")
-#    if playerin:
+#    if player_in:
 #        try:
 #            stayOrHit = int(input("1: Stay\n2: Hit\n"))
 #        except ValueError:
 #            print("Please press ether the nr '1' button or nr '2' button and try again")
 #           continue
 #    if total(dealerHand) > 16:
-#        dealerin = False
+#        dealer_in = False
 #    else:
 #        dealCard(dealerHand)
 #    if stayOrHit == 1:
-#        playerin = False
+#        player_in = False
 #   else:
 #       dealCard(playerHand)
 #   if total(playerHand) >= 21:
-#       playerin = False
+#       player_in = False
 #   elif total(dealerHand) >= 21:
-#        dealerin = False
+#        dealer_in = False
 
 #if total(playerHand) == 21:
 #    print(F"\nYou have {playerHand} for a total of {total(playerHand)} an the dealer have {dealerHand} for a total of {total(dealerHand)}")
