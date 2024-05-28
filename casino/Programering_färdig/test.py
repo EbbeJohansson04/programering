@@ -3,7 +3,8 @@ import random
 class Beting:
     def __init__(self) -> None:
         self.worth: int = 100
-        self.beting: int = int(input(f"You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}) "))
+        self.betting: int = int(input(f"You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}) "))
+
 
 class Deck:
     def __init__(self) -> None:
@@ -64,6 +65,7 @@ class Play:
         self.dealer.dealCard()
         self.player.calculate_total()
         self.dealer.calculate_total()
+        self.beting: int = int(input(f"You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}) "))
 
         while self.player_in or self.dealer_in:
             print(f"Dealer has {self.dealer.turn[0]} and x")
@@ -94,17 +96,23 @@ class Play:
 
     def determine_winner(self):
         if self.player.total_value == 21:
-            print(f"Blackjack! You win! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"Blackjack! You win! Your hand: {self.player.turn},for a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth += self.beting * 2
         elif self.dealer.total_value == 21:
-            print(f"Blackjack! Dealer wins! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"Blackjack! Dealer wins! Your hand: {self.player.turn}, for a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth -= self.beting
         elif self.player.total_value > 21:
-            print(f"You bust! Dealer wins! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"You bust! Dealer wins! Your hand: {self.player.turn}, for a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth -= self.beting
         elif self.dealer.total_value > 21:
-            print(f"Dealer busts! You win! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"Dealer busts! You win! Your hand: {self.player.turn}, for a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth += self.beting * 1.5
         elif self.player.total_value > self.dealer.total_value:
-            print(f"You win! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"You win! Your hand: {self.player.turn}, Dfor a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth += self.beting * 1.5
         else:
-            print(f"Dealer wins! Your hand: {self.player.turn}, Dealer's hand: {self.dealer.turn}")
+            print(f"It is a tie so Dealer wins! Your hand: {self.player.turn}, for a total of: {self.player.total_value} \nDealer's hand: {self.dealer.turn} for a total of {self.dealer.total_value}")
+            self.worth -= self.beting
 
 spela = Play()
 spela.game()
