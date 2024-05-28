@@ -1,5 +1,4 @@
 
-import random
 
 
 #fler spelare#
@@ -13,17 +12,6 @@ import random
 #beting = int(input("How much do dare to bet: "))
 
 
-class Beting():
-    def __init__(self) -> None:
-        self.worth: int = 100
-        self.beting: int = int(input("You currently have: ", self.worth, "\NHow much do dare to bet: (enter number between 1 and )", self.worth))
-
-class Deck():
-    def __init__(self)-> None:
-        self.deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A", "J", "Q", "K", "A",  "J", "Q", "K", "A",  "J", "Q", "K", "A", ]
-        self.deck = []
-        self.create_deck()
 
 #    def create_deck(self):
 #        self.deck = []
@@ -36,6 +24,21 @@ class Deck():
 #            self.cards.append(Card('\u2666', i))
             # club - unicode
 #            self.cards.append(Card('\u2663', i))
+
+
+import random
+
+class Beting():
+    def __init__(self) -> None:
+        self.worth: int = 100
+        self.beting: int = int(input("You currently have: {self.worth}\nHow much do dare to bet: (enter number between 1 and {self.worth})"))
+
+class Deck():
+    def __init__(self) -> None:
+        self.deck = [2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                    2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A", "J", "Q", "K", "A",  "J", "Q", "K", "A",  "J", "Q", "K", "A", ]
+        self.create_deck()
+
 
 
 
@@ -104,8 +107,8 @@ class Play():
         self.player_in = True
         self.dealer_in = True
         self.stayOrHit: int = 0
-        self.player = Hand("Ada")
-        self.computer = Hand("Computer")
+        self.player = Hand("pPayer")
+        self.computer = Hand("Dealer")
         self.deck = Deck()
 
     def game(self) -> None:
@@ -116,12 +119,12 @@ class Play():
         while self.player_in or self.dealer_in:
             print(F"Dealer has {self.computer.hand} and x")
             print(f"You have {self.player.hand} for a total of {self.player.total}")
-        if self.player_in:
-            self.stayOrHit = int(input("1: Stay\n2: Hit\n"))
-            if self.stayOrHit.isdigit():
-                int(self.stayOrHit)
-            else:
-                print("Please press ether the nr '1' button or nr '2' button and try again")
+            if self.player_in:
+                self.stayOrHit = int(input("1: Stay\n2: Hit\n"))
+                if self.stayOrHit.isdigit():
+                    int(self.stayOrHit)
+                else:
+                    print("Please press ether the nr '1' button or nr '2' button and try again")
         if self.total(self.dealerHand) > 16:
             self.dealer_in = False
         else:
