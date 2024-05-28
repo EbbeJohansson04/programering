@@ -148,17 +148,17 @@ class Play():
             print("Black Jack! Dealer wins")
             self.worth -= self.beting
         elif self.total(self.playerHand) > 21:
-                print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
-                print("You Bust! Dealer wins")
-                self.worth -= self.beting
+            print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
+            print("You Bust! Dealer wins")
+            self.worth -= self.beting
         elif self.total(self.dealerHand) > 21:
-                print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
-                print("Dealer busts! You win")
-                self.worth += self.beting * 1.5
+            print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
+            print("Dealer busts! You win")
+            self.worth += self.beting * 1.5
         elif 21 - self.total(self.dealerHand) < 21 - self.total(self.playerHand):
-                print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
-                print("You win")
-                self.worth += self.beting * 1.5
+            print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
+            print("You win")
+            self.worth += self.beting * 1.5
         elif 21 - self.total(self.dealerHand) > 21 - self.total(self.playerHand):
             print(F"\nYou have {self.playerHand} for a total of {self.total(self.playerHand)} an the dealer have {self.dealerHand} for a total of {self.total(self.dealerHand)}")
             print("Dealer Wins")
