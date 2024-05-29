@@ -26,14 +26,20 @@ class Interaction():
 
 
 class BettingGame:
-    def __init__(self) -> None:
-        self.worth: float = 100.0
-        self.current_bet: int = 0
-        self.user_input: Interaction = Interaction()
+    def __init__(self, num_players) -> None:
+        self.player_worth = {f"Player {i+1}": 100.0 for i in range(num_players)}
 
-    def placeBet(self) -> int:
-        self.current_bet: int = self.user_input.UserInputHandeler(f"How much do you want to bet? You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}): ")
-        self.worth -= self.current_bet  
+    def placeBet(self, player_name) -> int:
+        worth = self.player_worth[player_name]
+        current_bet = 0
+        while True:
+            current_bet = Interaction().UserInputHandeler(f"{player_name}, how much do you want to bet? You currently have: {worth}\nHow much do you dare to bet: (enter number between 1 and {worth}): ")
+            if current_bet <= worth:
+                break
+            else:
+                print("You don't have enough money. Please bet an amount less than or equal to your current worth.")
+        self.player_worth[player_name] -= current_bet
+        return current_bet
 
 class Card:
     def __init__(self, value, name) -> None:
@@ -99,11 +105,12 @@ class Dealer:
             return self.turn[1]
 
 class Play:
-    def __init__(self, betting: BettingGame) -> None:
-        self.player_in = True
+    def __init__(self, num_players, betting: BettingGame) -> None:
+        self.num_players = num_players
+        self.player_in = [True] * num_players
         self.dealer_in = True
         self.stayOrHit: int = 0
-        self.player = Hand("Player")
+        self.players = [Hand(f"Player {i+1}") for i in range(num_players)]
         self.dealer = Hand("Dealer")
         self.deck = Deck()
         self.betting = betting
@@ -111,8 +118,8 @@ class Play:
 
     
     def PrintPlayerHand(self):
-        for i in range(len(self.player.turn)):
-            print("",self.player.turn[i].name, self.player.turn[i].value, end='')
+        for i in range(len(self.players.turn)):
+            print("",self.players.turn[i].name, self.players.turn[i].value, end='')
     
     def PrintDealerHand(self):
         for i in range(len(self.dealer.turn)):
@@ -120,19 +127,21 @@ class Play:
 
     def game(self) -> None:
         for i in range(2):
-            self.player.dealCard(self.deck.DrawCard())
+            for player in self.players:
+                player.dealCard(self.deck.DrawCard())
             self.dealer.dealCard(self.deck.DrawCard())
-        self.player.calculate_total()
+        for player in self.players:
+            player.calculate_total()
         self.dealer.calculate_total()
-        self.betting.placeBet()
-
-        while self.player_in or self.dealer_in:
+        for player in self.players:
+            self.betting.placeBet(player.name)
+        while any(self.player_in) or self.dealer_in:
             if self.player_in:
                 print(f"Dealer has {self.dealer.turn[0].name} {self.dealer.turn[0].value} and x")
                 print("You have", end='')
                 self.PrintPlayerHand()
-                print(" for a total of:", self.player.total_value)
-                if self.player.total_value == 21:
+                print(" for a total of:", self.players.total_value)
+                if self.players.total_value == 21:
                     self.stayOrHit = 1
                 else:
                     self.stayOrHit = self.user_input.UserInputHandeler("1: Stay\n2: Hit\n")
@@ -140,10 +149,10 @@ class Play:
                     self.player_in = False
                 elif self.stayOrHit == 2:
                     card = random.choice(self.deck.deck)
-                    self.player.turn.append(card)
+                    self.players.turn.append(card)
                     self.deck.deck.remove(card)
-                    self.player.calculate_total()
-                    if self.player.total_value >= 21:
+                    self.players.calculate_total()
+                    if self.players.total_value >= 21:
                         self.player_in = False
             if self.dealer.total_value > 16:
                 self.dealer_in = False
@@ -158,10 +167,10 @@ class Play:
         self.determine_winner()
 
     def determine_winner(self):
-        if self.player.total_value == 21:
+        if self.players.total_value == 21:
             print("Blackjack! You win! Your hand:", end='')
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
@@ -169,15 +178,15 @@ class Play:
             print(f"You are now worth: {self.betting.worth}")
         elif self.dealer.total_value == 21:
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
             print(f"You are now worth: {self.betting.worth}")
-        elif self.player.total_value > 21:
+        elif self.players.total_value > 21:
             print(f"You bust! Dealer wins! Your hand:", end='')
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
@@ -185,16 +194,16 @@ class Play:
         elif self.dealer.total_value > 21:
             print("Dealer busts! You win! Your hand:", end='')
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
             self.betting.worth += self.betting.current_bet * 1.5
             print(f"You are now worth: {self.betting.worth}")
-        elif self.player.total_value > self.dealer.total_value:
+        elif self.players.total_value > self.dealer.total_value:
             print("You win! Your hand:", end='')
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
@@ -203,7 +212,7 @@ class Play:
         else:
             print("Dealer wins! Your hand:",end='')
             self.PrintPlayerHand()
-            print(" for a total of:", self.player.total_value)
+            print(" for a total of:", self.players.total_value)
             print("Dealer hand:", end='')
             self.PrintDealerHand()
             print(" for a total of:", self.dealer.total_value)
@@ -214,10 +223,14 @@ def main():
     play_again = True
     betting_game = BettingGame()
     while play_again:
-        spela = Play(betting_game)
+        num_players = interaction.UserInputHandeler("Enter number of players (2-7): ")
+        player_names = []
+        for i in range(num_players):
+            name = input(f"Enter name for Player {i+1}: ")
+            player_names.append(name)
+        spela = Play(num_players, betting_game)
         spela.game()
         play_again = interaction.YesNoHandler("Do you want to play again? (yes/no): ")
-
 
 if __name__ == "__main__":
     main()
