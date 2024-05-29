@@ -221,7 +221,7 @@ def main():
     while play_again:
         if betting_game.worth <= 0.0:
             print("You can't play again because you are broke and cannot bet anymore")
-            print("To play again you can either rerun the code or make some mone somewere else (like getting a job :) ")
+            print("To play again you can either rerun the code or make some mone somewere else (like getting a job XD) ")
             break
         spela = Play(betting_game)
         spela.game()

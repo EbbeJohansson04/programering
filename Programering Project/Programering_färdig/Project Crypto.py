@@ -52,12 +52,12 @@ alphabet = "abcdefghijklmnopqrstuvwxyzåäö"
 answer = input("Encrypt or Decrypt: ").lower()  
 x = ""  
 
-if answer == ['encrypt', 'e', 'en']:
+if answer in ['encrypt', 'e', 'en']:
     message = input("message pls: ").lower()  
     key = int(input("shift nr? "))  
     x = "yes"  
 
-elif answer == ['decrypt', 'e', 'en']:  
+elif answer in ['decrypt', 'd', 'de']:  
     medelande = input("message pls: ").lower()  
     nyckel = int(input("shift nr? "))  
     x = "no"  
