@@ -1,4 +1,9 @@
 # Loggbok
+### Vecka 22
+
+## Onsdag
+Jag är nu klar. Har gjort det möjligt att betta, köra igen och fail säkrat black jack (orkade inte göra på de andra). har gjort flera push men inte skrivit här sedan förra gången. (ps tipsar om att ha 2 skärmar eller inte timn "viktigaste" dator när du kör virus.py. Åter igen inget farligt men kan få datorn att crascha om man inte stänger av)
+
 
 ### Vecka 21
 
