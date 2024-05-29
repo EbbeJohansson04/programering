@@ -1,18 +1,16 @@
 import random
 
-
-
 class Interaction():
-    def UserInputHandeler(self, question) -> int:
+    def UserInputHandeler(self, question: str) -> int:
         bad_user_input: bool = True
         while bad_user_input:
             user_input: int = input(question).lower()
             if user_input.isdigit():
-                user_input = int(user_input)
+                user_input: float = int(user_input)
                 bad_user_input = False
         return user_input
     
-    def YesNoHandler(self, question) -> bool:
+    def YesNoHandler(self, question: str) -> bool:
         while True:
             user_input: str = input(question).lower()
             if user_input in ['yes', 'y', 'ye', 'yea', 'ja']:
@@ -33,7 +31,7 @@ class BettingGame:
 
     def placeBet(self) -> int:
         while True:
-            self.current_bet = self.user_input.UserInputHandeler(f"How much do you want to bet? You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}): ")
+            self.current_bet = self.user_input.UserInputHandeler(f"You currently have: {self.worth}\nHow much do you dare to bet: (enter number between 1 and {self.worth}): ")
             if self.current_bet > self.worth:
                 print("You cannot bet more than what you have.")
             else:
@@ -41,13 +39,13 @@ class BettingGame:
         self.worth -= self.current_bet  
 
 class Card:
-    def __init__(self, value, name) -> None:
+    def __init__(self, value: int, name: str) -> None:
         self.value: int = value
         self.name: str = name
 
 class Deck:
     def __init__(self) -> None:
-        self.deck = [
+        self.deck: list = [
             Card(2, "of Hearts"), Card(3, "of Hearts"), Card(4, "of Hearts"), Card(5, "of Hearts"),
             Card(6, "of Hearts"), Card(7, "of Hearts"), Card(8, "of Hearts"), Card(9, "of Hearts"),
             Card(10, "of Hearts"), Card(2, "of Diamonds"), Card(3, "of Diamonds"), Card(4, "of Diamonds"),
@@ -66,18 +64,18 @@ class Deck:
         ]
 
     def DrawCard(self) -> Card:
-        card = random.choice(self.deck)
+        card: Card = random.choice(self.deck)
         self.deck.remove(card)
         return card
 
 class Hand:
-    def __init__(self, name) -> None:
-        self.name = name
+    def __init__(self, name: str) -> None:
+        self.name: str = name
         self.hand: list[str] = []
         self.turn: list[int] = []
         self.total_value: int = 0
 
-    def dealCard(self, card) -> None:
+    def dealCard(self, card: Card) -> None:
         self.turn.append(card)
         
     def calculate_total(self) -> None:
@@ -105,23 +103,22 @@ class Dealer:
 
 class Play:
     def __init__(self, betting: BettingGame) -> None:
-        self.player_in = True
-        self.dealer_in = True
+        self.player_in: bool = True
+        self.dealer_in: bool = True
         self.stayOrHit: int = 0
-        self.player = Hand("Player")
-        self.dealer = Hand("Dealer")
-        self.deck = Deck()
-        self.betting = betting
-        self.user_input = Interaction()
-
+        self.player: Hand = Hand("Player")
+        self.dealer: Hand = Hand("Dealer")
+        self.deck: Deck = Deck()
+        self.betting: BettingGame = betting
+        self.user_input: Interaction = Interaction()
     
     def PrintPlayerHand(self):
         for i in range(len(self.player.turn)):
-            print("",self.player.turn[i].name, self.player.turn[i].value, end='')
+            print("",self.player.turn[i].value, self.player.turn[i].name, end='')
     
     def PrintDealerHand(self):
         for i in range(len(self.dealer.turn)):
-            print("", self.dealer.turn[i].name, self.dealer.turn[i].value, end='')
+            print("", self.dealer.turn[i].value, self.dealer.turn[i].name, end='')
 
     def game(self) -> None:
         for i in range(2):
@@ -133,7 +130,7 @@ class Play:
 
         while self.player_in or self.dealer_in:
             if self.player_in:
-                print(f"Dealer has {self.dealer.turn[0].name} {self.dealer.turn[0].value} and x")
+                print(f"Dealer has {self.dealer.turn[0].value} {self.dealer.turn[0].name} and x")
                 print("You have", end='')
                 self.PrintPlayerHand()
                 print(" for a total of:", self.player.total_value)
@@ -214,19 +211,21 @@ class Play:
             print(" for a total of:", self.dealer.total_value)
             print(f"You are now worth: {self.betting.worth}")
 
-def main():
-    interaction = Interaction()
-    play_again = True
-    betting_game = BettingGame()
-    while play_again:
-        if betting_game.worth <= 0.0:
-            print("You can't play again because you are broke and cannot bet anymore")
-            print("To play again you can either rerun the code or make some mone somewere else (like getting a job XD) ")
-            break
-        spela = Play(betting_game)
-        spela.game()
-        play_again = interaction.YesNoHandler("Do you want to play again? (yes/no): ")
 
+class Redo:
+    @staticmethod
+    def main():
+        betting_game = BettingGame()
+        play_again = True
+        while play_again:
+            if betting_game.worth <= 0.0:
+                print("You can't play again because you are broke and cannot bet anymore")
+                print("To play again you can either rerun the code or make some money somewhere else (like getting a job XD)")
+                break
+            spela = Play(betting_game)
+            spela.game()
+            interaction = Interaction()  # Move this inside the loop if needed
+            play_again = interaction.YesNoHandler("Do you want to play again? (yes/no): ")
 
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
