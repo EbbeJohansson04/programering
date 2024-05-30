@@ -213,7 +213,6 @@ class Play:
 
 
 class Redo:
-    @staticmethod
     def main():
         betting_game = BettingGame()
         play_again = True
